@@ -5,14 +5,13 @@
 ** Checks to see if a value is valid in it's current position
 ** So whether or not the number occurs in it's row, column or box already.
 ** First checks the value in the row and column of the square then the box.
+** i and j are the starting row and column numbers to check. +2 is the end.
 */
 
 int	is_valid(int number, int **puzzle, int row, int col)
 {
 	int i;
 	int j;
-	int start_column;
-	int start_row;
 
 	i = 0;
 	while (i < 9)
@@ -21,19 +20,17 @@ int	is_valid(int number, int **puzzle, int row, int col)
 			return (0);
 		i++;
 	}
-	start_column = (col / 3) * 3;
-	start_row = (row / 3) * 3;
-	i = start_row;
-	j = start_column;
-	while (i <= start_row + 2)
+	i = (row / 3) * 3;
+	j = (col / 3) * 3;
+	while (i <= (((row / 3) * 3) + 2))
 	{
-		while (j <= start_column + 2)
+		while (j <= ((col / 3) * 3) + 2)
 		{
 			if (puzzle[i][j] == number && i != row && j != col)
 					return (0);
 			j++;
 		}
-		j = start_column;
+		j = (col / 3) * 3;
 		i++;
 	}
 	return 1;
