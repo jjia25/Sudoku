@@ -94,7 +94,8 @@ Box **create_boxes()
 
 /*
 ** When update_boxes comes across a number
-** it updates the box to say that none of the squares in that box can be that number.
+** it updates the box to say that none of the squares in that box
+** can be that number.
 */
 
 int	update_boxes(Square ***sudoku, int row, int column)

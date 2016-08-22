@@ -9,7 +9,6 @@
 
 int	is_valid(int number, int **puzzle, int row, int col)
 {
-    printf("checking validity for row, column: %d, %d\n", row, col);
 	int i;
 	int j;
 	int start_column;
@@ -34,7 +33,7 @@ int	is_valid(int number, int **puzzle, int row, int col)
 					return (0);
 			j++;
 		}
-		j = 0;
+		j = start_column;
 		i++;
 	}
 	return 1;
@@ -50,6 +49,7 @@ int	is_valid(int number, int **puzzle, int row, int col)
 
 int	sudoku_solver(int **puzzle, int row, int column)
 {
+	print_array(puzzle);
 	int next_number;
 
 	next_number = 1;
@@ -66,10 +66,12 @@ int	sudoku_solver(int **puzzle, int row, int column)
     	{
     		if (is_valid(next_number, puzzle, row, column))
     		{
+				printf("%d is valid for row, col: %d, %d\n", next_number, row, column);
     			puzzle[row][column] = next_number;
     			if (column >= 8)
     			{
     				if (sudoku_solver(puzzle, row + 1, 0))
+					    printf("solving succeeds\n");
     					return (1);
     			}
     			else
@@ -82,5 +84,5 @@ int	sudoku_solver(int **puzzle, int row, int column)
     		next_number++;
     	}
 	}
-	return (1);
+	return (0);
 }
